@@ -1,9 +1,6 @@
-require('dotenv').config();
-
+const config = require('./config/env');
 const app = require('./app');
 
-const port = Number(process.env.PORT) || 5000;
-
-app.listen(port, () => {
-  console.log(`Backend server listening on port ${port}`);
+app.listen(config.port, () => {
+  console.log(`Backend server listening on port ${config.port}`);
 });

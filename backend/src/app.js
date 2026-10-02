@@ -1,6 +1,7 @@
 const express = require('express');
 
 const adminDashboardRouter = require('./routes/adminDashboard');
+const adminUsersRouter = require('./routes/adminUsers');
 const errorHandler = require('./middlewares/errorHandler');
 const notFound = require('./middlewares/notFound');
 const authRouter = require('./routes/auth');
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use('/api', healthRouter);
+app.use('/api/admin/users', adminUsersRouter);
 app.use('/api/admin', adminDashboardRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/cart', cartRouter);

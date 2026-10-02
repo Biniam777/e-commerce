@@ -3,6 +3,8 @@ import { createBrowserRouter } from 'react-router-dom';
 import AppLayout from '../layouts/AppLayout.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Login from '../pages/Login.jsx';
+import ProductDetail from '../pages/ProductDetail.jsx';
+import Products from '../pages/Products.jsx';
 import PlaceholderPage from '../pages/PlaceholderPage.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import Register from '../pages/Register.jsx';
@@ -30,7 +32,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: page('Catalog', 'Products', 'Product browsing will be added in a later checkpoint.')
+        element: <Products />
+      },
+      {
+        path: 'products/:slug',
+        element: <ProductDetail />
       },
       {
         element: <ProtectedRoute />,

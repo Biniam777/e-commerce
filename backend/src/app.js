@@ -6,6 +6,7 @@ const authRouter = require('./routes/auth');
 const cartRouter = require('./routes/cart');
 const categoryRouter = require('./routes/categories');
 const healthRouter = require('./routes/health');
+const orderRouter = require('./routes/orders');
 const productRouter = require('./routes/products');
 
 const app = express();
@@ -15,6 +16,7 @@ app.use('/api', healthRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/categories', categoryRouter);
+app.use('/api/orders', orderRouter);
 app.use('/api/products', productRouter);
 
 app.use(notFound);

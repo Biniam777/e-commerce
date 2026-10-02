@@ -1,14 +1,37 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import ProductGallery from '../components/ProductGallery.jsx';
+import { useAuth } from '../context/AuthContext.jsx';
+import { useCart } from '../context/CartContext.jsx';
 import { getProductBySlug } from '../services/productService.js';
 
 function ProductDetail() {
   const { slug } = useParams();
+  const { isAuthenticated } = useAuth();
+  const { actionLoading, addItem, error: cartError } = useCart();
+  const location = useLocation();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [addMessage, setAddMessage] = useState('');
+
+  const handleAddToCart = async () => {
+    setAddMessage('');
+
+    if (!isAuthenticated) {
+      navigate('/login', { state: { from: location } });
+      return;
+    }
+
+    try {
+      await addItem(product.id, 1);
+      setAddMessage('Added to cart.');
+    } catch (requestError) {
+      setAddMessage(requestError.message || 'Unable to add this product.');
+    }
+  };
 
   useEffect(() => {
     let active = true;
@@ -56,6 +79,15 @@ function ProductDetail() {
           <p className={product.stock > 0 ? 'stock-label in-stock' : 'stock-label out-of-stock'}>
             {product.stock > 0 ? `${product.stock} available` : 'Out of stock'}
           </p>
+          <button
+            className="add-to-cart-button detail-add-button"
+            disabled={product.stock <= 0 || actionLoading}
+            onClick={handleAddToCart}
+            type="button"
+          >
+            {product.stock <= 0 ? 'Out of stock' : actionLoading ? 'Adding...' : 'Add to cart'}
+          </button>
+          {(addMessage || cartError) && <p className="cart-action-message" role="status">{addMessage || cartError}</p>}
         </div>
       </div>
     </section>

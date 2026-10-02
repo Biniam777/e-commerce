@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import AppLayout from '../layouts/AppLayout.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Login from '../pages/Login.jsx';
+import Cart from '../pages/Cart.jsx';
 import ProductDetail from '../pages/ProductDetail.jsx';
 import Products from '../pages/Products.jsx';
 import PlaceholderPage from '../pages/PlaceholderPage.jsx';
@@ -43,7 +44,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'cart',
-            element: page('Shopping', 'Cart', 'Cart interactions will be added in a later checkpoint.')
+            element: <Cart />
           },
           {
             path: 'checkout',

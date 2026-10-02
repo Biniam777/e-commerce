@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext.jsx';
+import { useCart } from '../context/CartContext.jsx';
 
 const navigation = [
   ['/', 'Home'],
@@ -9,6 +10,7 @@ const navigation = [
 
 function AppLayout() {
   const { isAdmin, isAuthenticated, logout, user } = useAuth();
+  const { itemCount } = useCart();
 
   return (
     <div className="app-shell">
@@ -30,7 +32,7 @@ function AppLayout() {
           {isAuthenticated ? (
             <>
               {[
-                ['/cart', 'Cart'],
+                ['/cart', `Cart${itemCount ? ` (${itemCount})` : ''}`],
                 ['/orders', 'Orders'],
                 ['/profile', 'Profile']
               ].map(([path, label]) => (

@@ -57,7 +57,7 @@ const stockConflict = () => {
 
 const serializeProduct = (product) => ({
   ...product,
-  price: product.price.toString()
+  price: product.price.toFixed(2)
 });
 
 const serializeCartItem = (item) => ({

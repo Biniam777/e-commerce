@@ -53,7 +53,7 @@ const badRequest = (message) => {
 
 const serializeProduct = (product) => ({
   ...product,
-  price: product.price.toString()
+  price: product.price.toFixed(2)
 });
 
 const serializeProducts = (products) => products.map(serializeProduct);
@@ -87,7 +87,7 @@ const create = async ({ name, description, price, stock, categoryId, images = []
     return await prisma.$transaction(async (transaction) => {
       await ensureCategory(transaction, categoryId);
 
-      return transaction.product.create({
+      const product = await transaction.product.create({
         data: {
           name,
           slug,
@@ -99,6 +99,8 @@ const create = async ({ name, description, price, stock, categoryId, images = []
         },
         select: productSelect
       });
+
+      return serializeProduct(product);
     });
   } catch (error) {
     if (error.code === 'P2002') {
@@ -205,11 +207,13 @@ const update = async (id, changes) => {
         };
       }
 
-      return transaction.product.update({
+      const product = await transaction.product.update({
         where: { id },
         data,
         select: productSelect
       });
+
+      return serializeProduct(product);
     });
   } catch (error) {
     if (error.code === 'P2002') {

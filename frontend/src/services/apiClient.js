@@ -1,3 +1,5 @@
+import { getToken } from '../utils/authStorage.js';
+
 const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '/api').replace(/\/$/, '');
 
 const request = async (path, options = {}) => {
@@ -7,7 +9,8 @@ const request = async (path, options = {}) => {
     headers: {
       Accept: 'application/json',
       ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
-      ...headers
+      ...headers,
+      ...(getToken() ? { Authorization: `Bearer ${getToken()}` } : {})
     },
     body: body === undefined ? undefined : JSON.stringify(body)
   });

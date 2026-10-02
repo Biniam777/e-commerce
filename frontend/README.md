@@ -18,10 +18,10 @@ cp .env.example .env
 npm run dev
 ```
 
-Set `VITE_API_BASE_URL` in `.env` to the backend API base URL, for example:
+Set `VITE_API_BASE_URL` in `.env` to the backend API path, for example:
 
 ```text
-VITE_API_BASE_URL=http://localhost:5000/api
+VITE_API_BASE_URL=/api
 ```
 
-The backend must be running separately. The current pages are routing placeholders; feature workflows will be added in later checkpoints.
+During development, Vite proxies `/api` to `http://localhost:5000`. The backend must be running separately. The current pages are routing placeholders; feature workflows will be added in later checkpoints.

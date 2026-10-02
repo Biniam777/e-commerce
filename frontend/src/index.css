@@ -64,6 +64,21 @@ a {
   color: #0d5c63;
 }
 
+.nav-button {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.user-greeting {
+  align-items: center;
+  color: #7b8794;
+  display: inline-flex;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.35rem;
+}
+
 .page-frame {
   flex: 1;
   margin: 0 auto;
@@ -108,6 +123,69 @@ h1 {
   color: #334e68;
   margin-top: 2rem;
   padding: 0.85rem 1rem;
+}
+
+.form-page {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.65rem;
+  max-width: 30rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.auth-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.auth-form label {
+  color: #334e68;
+  display: grid;
+  font-size: 0.9rem;
+  font-weight: 650;
+  gap: 0.4rem;
+}
+
+.auth-form input {
+  border: 1px solid #bcccdc;
+  border-radius: 0.35rem;
+  color: #18212b;
+  font: inherit;
+  padding: 0.7rem 0.75rem;
+}
+
+.auth-form input:focus {
+  border-color: #0d5c63;
+  outline: 3px solid #d4eeee;
+}
+
+.auth-form button {
+  background: #0d5c63;
+  border: 0;
+  border-radius: 0.35rem;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.auth-form button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.form-error {
+  color: #a61b1b;
+  margin: 0;
+}
+
+.auth-loading {
+  color: #52606d;
+  padding: 4rem 1rem;
+  text-align: center;
 }
 
 .site-footer {

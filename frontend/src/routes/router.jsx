@@ -4,6 +4,7 @@ import AppLayout from '../layouts/AppLayout.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Login from '../pages/Login.jsx';
 import Cart from '../pages/Cart.jsx';
+import Checkout from '../pages/Checkout.jsx';
 import ProductDetail from '../pages/ProductDetail.jsx';
 import Products from '../pages/Products.jsx';
 import PlaceholderPage from '../pages/PlaceholderPage.jsx';
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'checkout',
-            element: page('Shopping', 'Checkout', 'Checkout will be added in a later checkpoint.')
+            element: <Checkout />
           },
           {
             path: 'orders',

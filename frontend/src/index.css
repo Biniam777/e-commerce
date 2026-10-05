@@ -530,6 +530,83 @@ h1 {
   margin: 0;
 }
 
+.checkout-layout {
+  align-items: start;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr);
+}
+
+.checkout-form {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  margin-top: 0;
+  padding: 1.25rem;
+}
+
+.checkout-form textarea {
+  border: 1px solid #bcccdc;
+  border-radius: 0.35rem;
+  color: #18212b;
+  font: inherit;
+  padding: 0.7rem 0.75rem;
+  resize: vertical;
+}
+
+.checkout-items {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.checkout-item {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.checkout-item span {
+  color: #52606d;
+}
+
+.checkout-confirmation {
+  max-width: 42rem;
+  text-align: left;
+}
+
+.confirmation-details {
+  display: grid;
+  gap: 0.8rem;
+  margin: 2rem 0;
+}
+
+.confirmation-details div {
+  border-top: 1px solid #dfe5e8;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 0.8rem;
+}
+
+.confirmation-details dt {
+  color: #52606d;
+}
+
+.confirmation-details dd {
+  font-weight: 700;
+  margin: 0;
+  text-align: right;
+  word-break: break-word;
+}
+
+.confirmation-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 .in-stock {
   color: #24713b;
 }
@@ -655,6 +732,10 @@ h1 {
   }
 
   .cart-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-layout {
     grid-template-columns: 1fr;
   }
 

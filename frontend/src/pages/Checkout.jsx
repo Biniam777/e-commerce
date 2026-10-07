@@ -63,7 +63,12 @@ function Checkout() {
           <div><dt>Total</dt><dd>${order.total}</dd></div>
         </dl>
         <div className="confirmation-actions">
-          <Link className="checkout-button inline-button" to="/orders">View orders</Link>
+          <Link
+            className="checkout-button inline-button"
+            to={`/orders/${order.id}`}
+          >
+            View order
+          </Link>
           <Link className="text-link" to="/products">Continue shopping</Link>
         </div>
       </section>
@@ -108,6 +113,7 @@ function Checkout() {
             {submitting ? 'Creating order...' : 'Place order'}
           </button>
         </form>
+
         <aside className="checkout-summary cart-summary">
           <p className="eyebrow">Order summary</p>
           <div className="checkout-items">
@@ -118,9 +124,18 @@ function Checkout() {
               </div>
             ))}
           </div>
-          <div className="summary-line"><span>Subtotal</span><strong>${subtotal}</strong></div>
-          <div className="summary-line"><span>Shipping</span><span>Calculated by server</span></div>
-          <div className="summary-line summary-total"><span>Total</span><strong>Calculated by server</strong></div>
+          <div className="summary-line">
+            <span>Subtotal</span>
+            <strong>${subtotal}</strong>
+          </div>
+          <div className="summary-line">
+            <span>Shipping</span>
+            <span>Calculated by server</span>
+          </div>
+          <div className="summary-line summary-total">
+            <span>Total</span>
+            <strong>Calculated by server</strong>
+          </div>
         </aside>
       </div>
     </section>

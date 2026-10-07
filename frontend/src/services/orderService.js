@@ -6,4 +6,8 @@ const createOrder = ({ shippingName, shippingPhone, shippingAddress }) =>
     body: { shippingName, shippingPhone, shippingAddress }
   });
 
-export { createOrder };
+const getOrders = () => apiRequest('/orders');
+
+const getOrderById = (id) => apiRequest(`/orders/${id}`);
+
+export { createOrder, getOrders, getOrderById };

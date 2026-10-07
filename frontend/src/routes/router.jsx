@@ -1,4 +1,6 @@
+import OrderDetails from '../pages/OrderDetails.jsx';
 import { createBrowserRouter } from 'react-router-dom';
+import Orders from '../pages/Orders.jsx';
 
 import AppLayout from '../layouts/AppLayout.jsx';
 import AdminRoute from './AdminRoute.jsx';
@@ -22,7 +24,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: page('Storefront', 'Home', 'The storefront foundation is ready.')
+        element: page(
+          'Storefront',
+          'Home',
+          'The storefront foundation is ready.'
+        )
       },
       {
         path: 'login',
@@ -53,11 +59,19 @@ export const router = createBrowserRouter([
           },
           {
             path: 'orders',
-            element: page('Account', 'Orders', 'Customer order history will be added in a later checkpoint.')
+            element: <Orders />
+          },
+          {
+            path: 'orders/:id',
+            element: <OrderDetails />
           },
           {
             path: 'profile',
-            element: page('Account', 'Profile', 'Profile management will be added in a later checkpoint.')
+            element: page(
+              'Account',
+              'Profile',
+              'Profile management will be added in a later checkpoint.'
+            )
           }
         ]
       },
@@ -66,7 +80,11 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'admin',
-            element: page('Operations', 'Admin dashboard', 'Admin workflows will be added in a later checkpoint.')
+            element: page(
+              'Operations',
+              'Admin dashboard',
+              'Admin workflows will be added in a later checkpoint.'
+            )
           }
         ]
       }

@@ -1,7 +1,7 @@
+import AdminDashboard from '../pages/admin/AdminDashboard.jsx';
 import OrderDetails from '../pages/OrderDetails.jsx';
 import { createBrowserRouter } from 'react-router-dom';
 import Orders from '../pages/Orders.jsx';
-
 import AppLayout from '../layouts/AppLayout.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import Login from '../pages/Login.jsx';
@@ -80,11 +80,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: 'admin',
-            element: page(
-              'Operations',
-              'Admin dashboard',
-              'Admin workflows will be added in a later checkpoint.'
-            )
+            element: <AdminDashboard />
           }
         ]
       }

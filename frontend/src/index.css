@@ -708,6 +708,70 @@ h1 {
   padding: 1.25rem;
   text-align: center;
 }
+.admin-dashboard {
+  width: 100%;
+}
+
+.admin-stat-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 2rem;
+}
+
+.admin-stat-card {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  padding: 1.25rem;
+}
+
+.admin-stat-card .eyebrow {
+  margin-bottom: 0.6rem;
+}
+
+.admin-stat-card strong {
+  display: block;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.1;
+}
+
+.admin-panel {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+}
+
+.admin-panel h2 {
+  margin: 0.35rem 0 0;
+}
+
+.admin-status-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.5rem 0 0;
+}
+
+.admin-status-list div {
+  align-items: center;
+  border-top: 1px solid #dfe5e8;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+}
+
+.admin-status-list dt {
+  color: #52606d;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.admin-status-list dd {
+  font-weight: 700;
+  margin: 0;
+}
 
 @media (max-width: 700px) {
   .site-header {
@@ -742,6 +806,9 @@ h1 {
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .admin-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 480px) {
@@ -758,5 +825,8 @@ h1 {
     align-items: start;
     grid-column: 2;
     justify-items: start;
+  }
+  .admin-stat-grid {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,6 +1,6 @@
 import { apiRequest } from './apiClient.js';
 
-const getProducts = (params) => {
+const getProducts = (params = {}) => {
   const query = new URLSearchParams();
 
   Object.entries(params).forEach(([key, value]) => {
@@ -10,9 +10,28 @@ const getProducts = (params) => {
   });
 
   const queryString = query.toString();
+
   return apiRequest(`/products${queryString ? `?${queryString}` : ''}`);
 };
 
-const getProductBySlug = (slug) => apiRequest(`/products/${encodeURIComponent(slug)}`);
+const getProductBySlug = (slug) =>
+  apiRequest(`/products/${encodeURIComponent(slug)}`);
 
-export { getProductBySlug, getProducts };
+const createProduct = (product) =>
+  apiRequest('/products', {
+    method: 'POST',
+    body: product
+  });
+
+const updateProduct = (id, product) =>
+  apiRequest(`/products/${id}`, {
+    method: 'PATCH',
+    body: product
+  });
+
+export {
+  createProduct,
+  getProductBySlug,
+  getProducts,
+  updateProduct
+};

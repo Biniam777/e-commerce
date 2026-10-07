@@ -124,7 +124,7 @@ function AdminProducts() {
                   <td>
                     <Link
                       className="text-link"
-                      to={`/admin/products/${product.id}/edit`}
+                      to={`/admin/products/${encodeURIComponent(product.slug)}/edit`}
                     >
                       Edit
                     </Link>

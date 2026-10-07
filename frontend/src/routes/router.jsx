@@ -1,18 +1,20 @@
-import AdminDashboard from '../pages/admin/AdminDashboard.jsx';
-import AdminProducts from '../pages/admin/AdminProducts.jsx';
-import OrderDetails from '../pages/OrderDetails.jsx';
 import { createBrowserRouter } from 'react-router-dom';
-import Orders from '../pages/Orders.jsx';
+
+import AdminDashboard from '../pages/admin/AdminDashboard.jsx';
+import AdminProductForm from '../pages/admin/AdminProductForm.jsx';
+import AdminProducts from '../pages/admin/AdminProducts.jsx';
 import AppLayout from '../layouts/AppLayout.jsx';
-import AdminRoute from './AdminRoute.jsx';
-import Login from '../pages/Login.jsx';
 import Cart from '../pages/Cart.jsx';
 import Checkout from '../pages/Checkout.jsx';
+import Login from '../pages/Login.jsx';
+import OrderDetails from '../pages/OrderDetails.jsx';
+import Orders from '../pages/Orders.jsx';
+import PlaceholderPage from '../pages/PlaceholderPage.jsx';
 import ProductDetail from '../pages/ProductDetail.jsx';
 import Products from '../pages/Products.jsx';
-import PlaceholderPage from '../pages/PlaceholderPage.jsx';
-import ProtectedRoute from './ProtectedRoute.jsx';
 import Register from '../pages/Register.jsx';
+import AdminRoute from './AdminRoute.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
 
 const page = (eyebrow, title, description) => (
   <PlaceholderPage description={description} eyebrow={eyebrow} title={title} />
@@ -86,6 +88,14 @@ export const router = createBrowserRouter([
           {
             path: 'admin/products',
             element: <AdminProducts />
+          },
+          {
+            path: 'admin/products/new',
+            element: <AdminProductForm />
+          },
+          {
+            path: 'admin/products/:slug/edit',
+            element: <AdminProductForm />
           }
         ]
       }

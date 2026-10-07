@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { getDashboard } from '../../services/adminDashboardService.js';
 
@@ -74,6 +75,10 @@ function AdminDashboard() {
             Overview of your store operations.
           </p>
         </div>
+
+        <Link className="checkout-button inline-button" to="/admin/products">
+          Manage products
+        </Link>
       </div>
 
       <div className="admin-stat-grid">

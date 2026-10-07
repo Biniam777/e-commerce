@@ -772,6 +772,58 @@ h1 {
   font-weight: 700;
   margin: 0;
 }
+.admin-products {
+  width: 100%;
+}
+
+.admin-product-table-wrapper {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.admin-product-table {
+  border-collapse: collapse;
+  min-width: 760px;
+  width: 100%;
+}
+
+.admin-product-table th,
+.admin-product-table td {
+  border-bottom: 1px solid #dfe5e8;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-product-table th {
+  color: #52606d;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-product-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-product-table td strong {
+  display: block;
+}
+
+.admin-product-table .stock-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.25rem 0.5rem;
+}
+
+.admin-product-pagination {
+  color: #52606d;
+  margin-top: 1rem;
+}
 
 @media (max-width: 700px) {
   .site-header {

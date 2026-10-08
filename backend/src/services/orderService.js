@@ -119,6 +119,7 @@ const create = async (userId, shipping) =>
 
       const itemSubtotal = product.price.mul(cartItem.quantity);
       subtotal = subtotal.plus(itemSubtotal);
+
       orderItems.push({
         productId: product.id,
         productName: product.name,
@@ -129,6 +130,7 @@ const create = async (userId, shipping) =>
     }
 
     const total = subtotal.plus(shippingCost);
+
     const order = await transaction.order.create({
       data: {
         userId,
@@ -143,7 +145,10 @@ const create = async (userId, shipping) =>
     });
 
     await transaction.orderItem.createMany({
-      data: orderItems.map((item) => ({ ...item, orderId: order.id }))
+      data: orderItems.map((item) => ({
+        ...item,
+        orderId: order.id
+      }))
     });
 
     for (const item of orderItems) {
@@ -152,7 +157,9 @@ const create = async (userId, shipping) =>
           id: item.productId,
           stock: { gte: item.quantity }
         },
-        data: { stock: { decrement: item.quantity } }
+        data: {
+          stock: { decrement: item.quantity }
+        }
       });
 
       if (updatedProducts.count !== 1) {
@@ -160,7 +167,9 @@ const create = async (userId, shipping) =>
       }
     }
 
-    await transaction.cartItem.deleteMany({ where: { cartId: cart.id } });
+    await transaction.cartItem.deleteMany({
+      where: { cartId: cart.id }
+    });
 
     const createdOrder = await transaction.order.findUnique({
       where: { id: order.id },
@@ -172,6 +181,7 @@ const create = async (userId, shipping) =>
 
 const list = async (userId, { page, limit }) => {
   const where = { userId };
+
   const [orders, total] = await Promise.all([
     prisma.order.findMany({
       where,
@@ -196,7 +206,10 @@ const list = async (userId, { page, limit }) => {
 
 const findById = async (userId, orderId) => {
   const order = await prisma.order.findFirst({
-    where: { id: orderId, userId },
+    where: {
+      id: orderId,
+      userId
+    },
     select: orderSelect
   });
 
@@ -207,4 +220,53 @@ const findById = async (userId, orderId) => {
   return serializeOrder(order);
 };
 
-module.exports = { create, list, findById };
+const processPayment = async (userId, orderId, action) =>
+  prisma.$transaction(
+    async (transaction) => {
+      const order = await transaction.order.findFirst({
+        where: {
+          id: orderId,
+          userId
+        },
+        select: {
+          id: true,
+          paymentStatus: true,
+          status: true
+        }
+      });
+
+      if (!order) {
+        throw notFound('Order not found');
+      }
+
+      if (order.status === 'CANCELLED') {
+        throw badRequest('Cancelled orders cannot be paid');
+      }
+
+      if (order.paymentStatus === 'PAID') {
+        throw badRequest('Order has already been paid');
+      }
+
+      if (
+        order.paymentStatus !== 'PENDING' &&
+        order.paymentStatus !== 'FAILED'
+      ) {
+        throw badRequest('Order cannot be paid in its current payment state');
+      }
+
+      const paymentStatus = action === 'success' ? 'PAID' : 'FAILED';
+
+      const updatedOrder = await transaction.order.update({
+        where: { id: order.id },
+        data: { paymentStatus },
+        select: orderSelect
+      });
+
+      return serializeOrder(updatedOrder);
+    },
+    {
+      isolationLevel: Prisma.TransactionIsolationLevel.Serializable
+    }
+  );
+
+module.exports = {create, list, findById, processPayment};

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Payment from '../pages/Payment.jsx';
 import AdminUserDetails from '../pages/admin/AdminUserDetails.jsx';
 import AdminUsers from '../pages/admin/AdminUsers.jsx';
 import AdminOrderDetails from '../pages/admin/AdminOrderDetails.jsx';
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
           {
             path: 'orders/:id',
             element: <OrderDetails />
+          },
+          {
+            path: 'orders/:id/payment',
+            element: <Payment />
           },
           {
             path: 'profile',

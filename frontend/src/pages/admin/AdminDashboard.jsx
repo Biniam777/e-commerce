@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getDashboard } from '../../services/adminDashboardService.js';
 
-const orderStatuses = [
+const ORDER_STATUSES = [
   'PENDING',
   'CONFIRMED',
   'PROCESSING',
@@ -29,7 +29,7 @@ function AdminDashboard() {
         }
       } catch (requestError) {
         if (active) {
-          setError(requestError.message || 'Unable to load the admin dashboard.');
+          setError(requestError.message || 'Unable to load dashboard.');
         }
       } finally {
         if (active) {
@@ -48,20 +48,16 @@ function AdminDashboard() {
   if (loading) {
     return (
       <p className="catalog-message" role="status">
-        Loading admin dashboard...
+        Loading dashboard...
       </p>
     );
   }
 
   if (error) {
     return (
-      <section className="catalog-message">
-        <p className="eyebrow">Operations</p>
-        <h1>Unable to load dashboard</h1>
-        <p className="form-error" role="alert">
-          {error}
-        </p>
-      </section>
+      <p className="form-error" role="alert">
+        {error}
+      </p>
     );
   }
 
@@ -76,9 +72,21 @@ function AdminDashboard() {
           </p>
         </div>
 
-        <Link className="checkout-button inline-button" to="/admin/products">
-          Manage products
-        </Link>
+        <div className="admin-dashboard-actions">
+          <Link
+            className="secondary-button"
+            to="/admin/categories"
+          >
+            Manage categories
+          </Link>
+
+          <Link
+            className="checkout-button inline-button"
+            to="/admin/products"
+          >
+            Manage products
+          </Link>
+        </div>
       </div>
 
       <div className="admin-stat-grid">
@@ -103,25 +111,27 @@ function AdminDashboard() {
         </article>
 
         <article className="admin-stat-card">
-          <p className="eyebrow">Revenue</p>
+          <p className="eyebrow">Paid revenue</p>
           <strong>${dashboard.revenue}</strong>
         </article>
       </div>
 
-      <section className="admin-panel">
-        <div>
-          <p className="eyebrow">Order overview</p>
-          <h2>Orders by status</h2>
+      <section className="admin-order-statuses">
+        <div className="catalog-heading">
+          <div>
+            <p className="eyebrow">Orders</p>
+            <h2>Order status</h2>
+          </div>
         </div>
 
-        <dl className="admin-status-list">
-          {orderStatuses.map((status) => (
-            <div key={status}>
-              <dt>{status}</dt>
-              <dd>{dashboard.ordersByStatus[status]}</dd>
-            </div>
+        <div className="admin-stat-grid">
+          {ORDER_STATUSES.map((status) => (
+            <article className="admin-stat-card" key={status}>
+              <p className="eyebrow">{status}</p>
+              <strong>{dashboard.ordersByStatus[status]}</strong>
+            </article>
           ))}
-        </dl>
+        </div>
       </section>
     </section>
   );

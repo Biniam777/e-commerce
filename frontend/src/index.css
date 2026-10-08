@@ -975,3 +975,102 @@ h1 {
 .danger-button:hover:not(:disabled) {
   text-decoration: underline;
 }
+
+.admin-dashboard-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.admin-categories {
+  width: 100%;
+}
+
+.admin-category-create {
+  align-items: end;
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-top: 1.5rem;
+  max-width: 760px;
+  padding: 1.5rem;
+}
+
+.admin-category-table-wrapper {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.admin-category-table {
+  border-collapse: collapse;
+  min-width: 680px;
+  width: 100%;
+}
+
+.admin-category-table th,
+.admin-category-table td {
+  border-bottom: 1px solid #e7ecef;
+  padding: 1rem;
+  text-align: left;
+}
+
+.admin-category-table th {
+  color: #52606d;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-category-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-category-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-category-edit-form {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-category-edit-form input {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 700px) {
+  .admin-dashboard-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-dashboard-actions > * {
+    width: 100%;
+  }
+
+  .admin-category-create {
+    align-items: stretch;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .admin-category-edit-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .admin-category-edit-form > * {
+    width: 100%;
+  }
+}

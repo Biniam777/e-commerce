@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import AdminCategories from '../pages/admin/AdminCategories.jsx';
 import AdminDashboard from '../pages/admin/AdminDashboard.jsx';
 import AdminProductForm from '../pages/admin/AdminProductForm.jsx';
 import AdminProducts from '../pages/admin/AdminProducts.jsx';
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
           {
             path: 'admin/products/:slug/edit',
             element: <AdminProductForm />
+          },
+          {
+            path: 'admin/categories',
+            element: <AdminCategories />
           }
         ]
       }

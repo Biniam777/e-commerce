@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-
+import AdminOrderDetails from '../pages/admin/AdminOrderDetails.jsx';
+import AdminOrders from '../pages/admin/AdminOrders.jsx';
 import AdminCategories from '../pages/admin/AdminCategories.jsx';
 import AdminDashboard from '../pages/admin/AdminDashboard.jsx';
 import AdminProductForm from '../pages/admin/AdminProductForm.jsx';
@@ -101,6 +102,14 @@ export const router = createBrowserRouter([
           {
             path: 'admin/categories',
             element: <AdminCategories />
+          },
+          {
+            path: 'admin/orders',
+            element: <AdminOrders />
+          },
+          {
+            path: 'admin/orders/:id',
+            element: <AdminOrderDetails />
           }
         ]
       }

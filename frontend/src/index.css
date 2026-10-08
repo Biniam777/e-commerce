@@ -1074,3 +1074,148 @@ h1 {
     width: 100%;
   }
 }
+
+.admin-orders {
+  width: 100%;
+}
+
+.admin-order-filters {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+}
+
+.admin-order-search {
+  align-items: end;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.admin-order-filter-grid {
+  align-items: end;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+}
+
+.admin-order-table-wrapper {
+  background: #ffffff;
+  border: 1px solid #dfe5e8;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+}
+
+.admin-order-table {
+  border-collapse: collapse;
+  min-width: 980px;
+  width: 100%;
+}
+
+.admin-order-table th,
+.admin-order-table td {
+  border-bottom: 1px solid #e7ecef;
+  padding: 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-order-table th {
+  color: #52606d;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-order-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.admin-order-customer-email {
+  color: #697586;
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.admin-order-pagination {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.admin-order-pagination p {
+  color: #52606d;
+  margin: 0;
+}
+
+.admin-pagination-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-order-details {
+  width: 100%;
+}
+
+.admin-order-detail-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  margin-top: 1.5rem;
+}
+
+.admin-status-management {
+  border-bottom: 1px solid #e7ecef;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.admin-status-management > p:last-child {
+  color: #697586;
+  margin: 0;
+}
+
+.admin-status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.danger-action {
+  color: #b42318;
+}
+
+.admin-customer-section + .admin-customer-section {
+  border-top: 1px solid #e7ecef;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .admin-order-search,
+  .admin-order-filter-grid,
+  .admin-order-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-order-pagination {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .admin-pagination-actions {
+    width: 100%;
+  }
+
+  .admin-pagination-actions > * {
+    flex: 1;
+  }
+}

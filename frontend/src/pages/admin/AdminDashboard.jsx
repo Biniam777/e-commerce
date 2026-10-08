@@ -88,6 +88,13 @@ function AdminDashboard() {
           </Link>
 
           <Link
+            className="secondary-button"
+            to="/admin/users"
+          >
+            Manage users
+          </Link>
+
+          <Link
             className="checkout-button inline-button"
             to="/admin/products"
           >

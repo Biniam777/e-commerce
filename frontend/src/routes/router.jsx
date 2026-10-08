@@ -14,16 +14,13 @@ import Checkout from '../pages/Checkout.jsx';
 import Login from '../pages/Login.jsx';
 import OrderDetails from '../pages/OrderDetails.jsx';
 import Orders from '../pages/Orders.jsx';
-import PlaceholderPage from '../pages/PlaceholderPage.jsx';
+import Home from '../pages/Home.jsx';
 import ProductDetail from '../pages/ProductDetail.jsx';
 import Products from '../pages/Products.jsx';
+import Profile from '../pages/Profile.jsx';
 import Register from '../pages/Register.jsx';
 import AdminRoute from './AdminRoute.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
-
-const page = (eyebrow, title, description) => (
-  <PlaceholderPage description={description} eyebrow={eyebrow} title={title} />
-);
 
 export const router = createBrowserRouter([
   {
@@ -32,11 +29,7 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: page(
-          'Storefront',
-          'Home',
-          'The storefront foundation is ready.'
-        )
+        element: <Home />
       },
       {
         path: 'login',
@@ -79,11 +72,7 @@ export const router = createBrowserRouter([
           },
           {
             path: 'profile',
-            element: page(
-              'Account',
-              'Profile',
-              'Profile management will be added in a later checkpoint.'
-            )
+            element: <Profile />
           }
         ]
       },

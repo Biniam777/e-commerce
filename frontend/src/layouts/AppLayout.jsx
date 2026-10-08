@@ -78,7 +78,6 @@ function AppLayout() {
       <main className="page-frame">
         <Outlet />
       </main>
-      <footer className="site-footer">Frontend foundation</footer>
     </div>
   );
 }

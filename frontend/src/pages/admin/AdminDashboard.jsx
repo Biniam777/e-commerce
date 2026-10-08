@@ -63,7 +63,7 @@ function AdminDashboard() {
 
   return (
     <section className="admin-dashboard">
-      <div className="catalog-heading">
+      <div className="catalog-heading admin-dashboard-heading">
         <div>
           <p className="eyebrow">Operations</p>
           <h1>Admin dashboard</h1>
@@ -103,7 +103,7 @@ function AdminDashboard() {
         </div>
       </div>
 
-      <div className="admin-stat-grid">
+      <div className="admin-stat-grid admin-overview-grid">
         <article className="admin-stat-card">
           <p className="eyebrow">Users</p>
           <strong>{dashboard.counts.users}</strong>
@@ -135,12 +135,15 @@ function AdminDashboard() {
           <div>
             <p className="eyebrow">Orders</p>
             <h2>Order status</h2>
+            <p className="page-description">
+              Current order distribution across the store.
+            </p>
           </div>
         </div>
 
-        <div className="admin-stat-grid">
+        <div className="admin-order-status-grid">
           {ORDER_STATUSES.map((status) => (
-            <article className="admin-stat-card" key={status}>
+            <article className="admin-stat-card admin-status-card" key={status}>
               <p className="eyebrow">{status}</p>
               <strong>{dashboard.ordersByStatus[status]}</strong>
             </article>

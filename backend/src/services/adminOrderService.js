@@ -151,15 +151,33 @@ const updateStatus = async (id, status) =>
   prisma.$transaction(async (transaction) => {
     const current = await transaction.order.findUnique({
       where: { id },
-      select: { status: true }
+      select: {
+        status: true,
+        paymentStatus: true
+      }
     });
 
     if (!current) {
       throw notFound();
     }
 
-    if (current.status !== status && !orderStatuses[current.status].includes(status)) {
-      throw conflict(`Invalid order status transition from ${current.status} to ${status}`);
+    if (
+      current.status !== status &&
+      !orderStatuses[current.status].includes(status)
+    ) {
+      throw conflict(
+        `Invalid order status transition from ${current.status} to ${status}`
+      );
+    }
+
+    if (
+      current.status !== status &&
+      status === 'DELIVERED' &&
+      current.paymentStatus !== 'PAID'
+    ) {
+      throw conflict(
+        `Order cannot be marked as DELIVERED until payment is PAID`
+      );
     }
 
     if (current.status !== status) {
@@ -175,6 +193,8 @@ const updateStatus = async (id, status) =>
     });
 
     return serializeDetail(order);
-  }, { isolationLevel: Prisma.TransactionIsolationLevel.Serializable });
+  }, {
+    isolationLevel: Prisma.TransactionIsolationLevel.Serializable
+  });
 
 module.exports = { list, findById, updateStatus };

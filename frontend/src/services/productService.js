@@ -29,8 +29,14 @@ const updateProduct = (id, product) =>
     body: product
   });
 
+const deleteProduct = (id) =>
+  apiRequest(`/products/${id}`, {
+    method: 'DELETE'
+  });
+
 export {
   createProduct,
+  deleteProduct,
   getProductBySlug,
   getProducts,
   updateProduct

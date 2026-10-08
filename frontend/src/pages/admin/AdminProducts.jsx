@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { getProducts } from '../../services/productService.js';
+import {
+  deleteProduct,
+  getProducts
+} from '../../services/productService.js';
 
 function AdminProducts() {
   const [products, setProducts] = useState([]);
   const [pagination, setPagination] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [deletingId, setDeletingId] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -42,23 +46,47 @@ function AdminProducts() {
     };
   }, []);
 
+  const handleDelete = async (product) => {
+    const confirmed = window.confirm(
+      `Delete "${product.name}"? This action cannot be undone.`
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    setError('');
+    setDeletingId(product.id);
+
+    try {
+      await deleteProduct(product.id);
+
+      setProducts((currentProducts) =>
+        currentProducts.filter((currentProduct) => currentProduct.id !== product.id)
+      );
+
+      setPagination((currentPagination) => {
+        if (!currentPagination) {
+          return currentPagination;
+        }
+
+        return {
+          ...currentPagination,
+          total: Math.max(0, currentPagination.total - 1)
+        };
+      });
+    } catch (requestError) {
+      setError(requestError.message || 'Unable to delete product.');
+    } finally {
+      setDeletingId('');
+    }
+  };
+
   if (loading) {
     return (
       <p className="catalog-message" role="status">
         Loading products...
       </p>
-    );
-  }
-
-  if (error) {
-    return (
-      <section className="catalog-message">
-        <p className="eyebrow">Product management</p>
-        <h1>Unable to load products</h1>
-        <p className="form-error" role="alert">
-          {error}
-        </p>
-      </section>
     );
   }
 
@@ -77,6 +105,12 @@ function AdminProducts() {
           Add product
         </Link>
       </div>
+
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
 
       {products.length === 0 ? (
         <div className="catalog-message">
@@ -122,12 +156,23 @@ function AdminProducts() {
                     {new Date(product.createdAt).toLocaleDateString()}
                   </td>
                   <td>
-                    <Link
-                      className="text-link"
-                      to={`/admin/products/${encodeURIComponent(product.slug)}/edit`}
-                    >
-                      Edit
-                    </Link>
+                    <div className="admin-product-actions">
+                      <Link
+                        className="text-link"
+                        to={`/admin/products/${encodeURIComponent(product.slug)}/edit`}
+                      >
+                        Edit
+                      </Link>
+
+                      <button
+                        className="text-button danger-button"
+                        disabled={deletingId === product.id}
+                        onClick={() => handleDelete(product)}
+                        type="button"
+                      >
+                        {deletingId === product.id ? 'Deleting...' : 'Delete'}
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}

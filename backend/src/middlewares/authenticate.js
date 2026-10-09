@@ -20,7 +20,9 @@ const authenticate = async (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(match[1], config.jwtSecret);
+    payload = jwt.verify(match[1], config.jwtSecret, {
+      algorithms: [config.jwtAlgorithm]
+    });
   } catch (error) {
     return unauthorized(res);
   }
@@ -37,6 +39,7 @@ const authenticate = async (req, res, next) => {
     }
 
     req.user = user;
+
     return next();
   } catch (error) {
     return next(error);

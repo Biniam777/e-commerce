@@ -1,25 +1,66 @@
 # E-commerce Backend
 
-Node.js and Express REST API foundation for the e-commerce application.
+Production-oriented REST API for the e-commerce application.
+
+## Stack
+
+- Node.js
+- Express 5
+- JavaScript
+- MySQL 8
+- Prisma ORM
+- JWT authentication
+- bcryptjs password hashing
+- Helmet security headers
 
 ## Requirements
 
 - Node.js 20 or newer
 - npm
-- MySQL
+- MySQL 8 or compatible MySQL server
 
-## Setup
+## Features
 
-1. Copy `.env.example` to `.env` and set local values.
-2. Install dependencies with `npm install`.
-3. Start the development server with `npm run dev`.
+- User registration and login
+- JWT authentication
+- Role-based admin authorization
+- User profile and session handling
+- Category management
+- Product management
+- Product images
+- Server-side shopping cart
+- Stock validation
+- Checkout and order creation
+- Customer order history
+- Simulated payment flow
+- Admin dashboard
+- Admin user management
+- Admin order management
+- Order status transition rules
+- Payment-before-delivery protection
+- Centralized error handling
+- Request body size limits
+- Security headers with Helmet
+- Environment validation
+- Explicit JWT algorithm validation
 
-The backend currently contains only application and server bootstrapping. Domain features and the Prisma schema will be added in later tasks.
+## Project Structure
 
-## Scripts
-
-- `npm run dev`: Start with automatic restart on file changes.
-- `npm start`: Start the server.
-- `npm run check`: Run basic JavaScript syntax checks.
-- `npm run prisma:generate`: Generate the Prisma client after a schema exists.
-- `npm run prisma:migrate`: Run Prisma development migrations after a schema exists.
+```text
+backend/
+├── prisma/
+│   ├── migrations/
+│   └── schema.prisma
+├── src/
+│   ├── config/
+│   ├── controllers/
+│   ├── middlewares/
+│   ├── routes/
+│   ├── services/
+│   ├── utils/
+│   ├── validators/
+│   ├── app.js
+│   └── server.js
+├── .env.example
+├── package.json
+└── README.md

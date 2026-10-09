@@ -1,27 +1,43 @@
 # E-commerce Frontend
 
-React and Vite frontend foundation for the e-commerce application.
+React and Vite frontend for the e-commerce application.
 
 ## Stack
 
-- React
+- React 19
 - Vite
 - JavaScript
 - React Router
-- Native `fetch` API
+- Native fetch API
+- CSS design system
 
-## Setup
+## Features
+
+- User registration, login, and logout
+- Persistent authenticated sessions
+- Protected routes and admin authorization
+- Product catalog, search, and filtering
+- Product details and images
+- Server-side shopping cart
+- Stock-aware cart controls
+- Checkout and order creation
+- Customer order history and order details
+- Simulated payments and payment retry
+- Customer profile
+- Admin dashboard
+- Admin product and category management
+- Admin order and user management
+- Responsive interface
+
+## Requirements
+
+- Node.js 20 or newer
+- npm
+- The e-commerce backend and MySQL database
+
+## Local Setup
+
+From the frontend directory:
 
 ```bash
 npm install
-cp .env.example .env
-npm run dev
-```
-
-Set `VITE_API_BASE_URL` in `.env` to the backend API path, for example:
-
-```text
-VITE_API_BASE_URL=/api
-```
-
-During development, Vite proxies `/api` to `http://localhost:5000`. The backend must be running separately. The current pages are routing placeholders; feature workflows will be added in later checkpoints.

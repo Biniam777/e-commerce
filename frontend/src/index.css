@@ -3441,3 +3441,86 @@ p {
     align-items: flex-start;
   }
 }
+/* Admin product form spacing fix */
+.admin-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.admin-product-form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+}
+
+.admin-product-form .form-field label {
+  display: block;
+  position: static;
+  margin: 0;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.admin-product-form input,
+.admin-product-form textarea,
+.admin-product-form select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.admin-product-form textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.admin-product-form input::placeholder,
+.admin-product-form textarea::placeholder {
+  color: var(--color-text-soft);
+  opacity: 1;
+}
+
+.admin-product-form .admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.admin-product-form .admin-form-grid .form-field:last-child {
+  grid-column: auto;
+}
+
+.admin-product-form .field-help {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.admin-product-form .form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .admin-product-form {
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .admin-product-form .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+}

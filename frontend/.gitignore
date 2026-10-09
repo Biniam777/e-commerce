@@ -5,3 +5,6 @@ dist/
 !.env.example
 *.log
 .DS_Store
+# Local CSS backups
+/src/index.css.before-final-design
+/src/index.css.before-ui-cleanup
